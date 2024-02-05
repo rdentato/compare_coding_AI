@@ -1,0 +1,20 @@
+import sqlite3
+
+def check_course_capacity(db_file):
+    conn = sqlite3.connect(db_file)
+    c = conn.cursor()
+
+    c.execute("""
+        SELECT CourseID, COUNT(StudentID) AS num_students, Capacity
+        FROM ENROLLMENT
+        INNER JOIN CLASSROOM ON ENROLLMENT.ClassroomID = CLASSROOM.ClassroomID
+        GROUP BY CourseID
+    """)
+
+    for row in c.fetchall():
+        course_id, num_students, capacity = row
+        if num_students > capacity:
+            print(f"Course {course_id} has {num_students} students, exceeding capacity of {capacity}.")
+
+    conn.close()
+This function takes the database file as input and checks if any course has a number of students that exceeds the capacity of the classroom. If it does, it prints a message indicating the course ID, number of students, and capacity.

@@ -1,0 +1,24 @@
+Here is a Python function using sqlite that checks that no course has a number of students that exceed classrooms capacity:
+
+
+
+import sqlite3
+
+def check\_classroom\_capacity(db\_path):
+db = sqlite3.connect(db\_path)
+cursor = db.cursor()
+
+cursor.execute("""
+SELECT c.CourseID, c.Subject, l.ClassroomID, cl.RoomNumber, cl.Building, cl.Capacity, COUNT(e.StudentID) as StudentCount
+FROM COURSE c
+JOIN ENROLLMENT e ON c.CourseID = e.CourseID
+JOIN LESSON l ON c.CourseID = l.CourseID
+JOIN CLASSROOM cl ON l.ClassroomID = cl.ClassroomID
+GROUP BY c.CourseID, cl.ClassroomID
+HAVING StudentCount > cl.Capacity
+""")
+
+results = cursor.fetchall()
+db.close()
+return results
+This function takes the path to an sqlite database as an argument and returns a list of tuples, where each tuple represents a course and a classroom with a number of students that exceed the classroom's capacity. The function performs a join between the COURSE, ENROLLMENT, LESSON, and CLASSROOM tables to get the relevant information, and uses the HAVING clause to filter for courses with a student count greater than the classroom capacity. If the resulting list is empty, then no course has a number of students that exceed classrooms capacity.

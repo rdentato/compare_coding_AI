@@ -1,0 +1,9 @@
+Use constructor-based initialization in the Employee class for better code readability and encapsulation.
+
+Change the return type of calculateAverageAge() to int to avoid unnecessary type casting and improve performance.
+
+Use stream() and filter() methods to simplify the findEmployeeById() method and improve readability.
+
+Here's the refactored code:
+
+``

@@ -1,0 +1,26 @@
+Here is a possible implementation of the decrypt function:
+
+int decrypt(char *dst, char *src, char *key) {
+    int key_len = strlen(key);
+    if (key_len == 0) return -1;
+    int key_index = 0;
+    for (int i = 0; src[i] != '\0'; ++i) {
+        if (src[i] >= '0' && src[i] <= '9') {
+            dst[i] = '0' + (9 - src[i]);
+        } else if (src[i] >= 'A' && src[i] <= 'Z') {
+            dst[i] = rot13(src[i]) ^ key[key_index];
+        } else if (src[i] >= 'a' && src[i] <= 'z') {
+            dst[i] = src[i] ^ key[key_index];
+        } else {
+            dst[i] = src[i];
+        }
+        key_index = (key_index + 1) % key_len;
+    }
+    dst[strlen(src)] = '\0';
+    return 0;
+}
+This function is similar to the encrypt function, but it uses the key to decrypt the input string instead of encrypting it. The key is used to XOR the input characters, and the resulting characters are then inverted (complement to 9) to obtain the original characters.
+
+The main difference between the encrypt and decrypt functions is the use of the rot13 function, which is used to rotate the input characters by 13 positions in the alphabet. This is the same operation that is used in the encrypt function to encrypt the input characters. However, in the decrypt function, the rotation is performed in the opposite direction, so that the encrypted characters can be decrypted back to their original form.
+
+Note that the decrypt function assumes that the input string is encrypted using the same key that was used to encrypt it. If the input string was encrypted using a different key, the decrypt function will not be able to decrypt it correctly.

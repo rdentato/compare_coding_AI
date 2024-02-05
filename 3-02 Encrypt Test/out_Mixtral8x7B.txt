@@ -1,0 +1,70 @@
+
+To achieve a coverage of 90% at least, here's a full set of unit tests:
+
+#include <string.h>
+#include <stdio.h>
+#include "encrypt.h"
+
+void test_encrypt_empty_key() {
+    char dst[100];
+    char src[] = "Hello, World!";
+    char key[] = "";
+    int result = encrypt(dst, src, key);
+    // Check for -1 return value
+    assert(result == -1);
+}
+
+void test_encrypt_short_key() {
+    char dst[100];
+    char src[] = "Hello, World!";
+    char key[] = "key";
+    int result = encrypt(dst, src, key);
+    // Check for 0 return value
+    assert(result == 0);
+    // Check the encrypted string
+    assert(strcmp(dst, "Rovvy/ Cngj!") == 0);
+}
+
+void test_encrypt_long_key() {
+    char dst[100];
+    char src[] = "Hello, World!";
+    char key[] = "thisisverylongkey";
+    int result = encrypt(dst, src, key);
+    // Check for 0 return value
+    assert(result == 0);
+    // Check the encrypted string
+    assert(strcmp(dst, "Pbiq, Gjb!)") == 0);
+}
+
+void test_encrypt_numbers() {
+    char dst[100];
+    char src[] = "1234567890";
+    char key[] = "key";
+    int result = encrypt(dst, src, key);
+    // Check for 0 return value
+    assert(result == 0);
+    // Check the encrypted string
+    assert(strcmp(dst, "9876543210") == 0);
+}
+
+void test_encrypt_empty_string() {
+    char dst[100];
+    char src[] = "";
+    char key[] = "key";
+    int result = encrypt(dst, src, key);
+    // Check for 0 return value
+    assert(result == 0);
+    // Check the encrypted string
+    assert(strcmp(dst, "") == 0);
+}
+
+int main() {
+    test_encrypt_empty_key();
+    test_encrypt_short_key();
+    test_encrypt_long_key();
+    test_encrypt_numbers();
+    test_encrypt_empty_string();
+    printf("All tests passed.\n");
+    return 0;
+}
+This set of unit tests checks for different edge cases, including empty key, short key, long key, numbers, and empty string. It should provide a coverage of at least 90%.

@@ -1,0 +1,95 @@
+The calculateAndSort function is doing too much work. It's calculating the mean, median, mode, and sorting the array all in one function. This violates the Single Responsibility Principle (SRP), which states that a function should do one thing and do it well.
+
+Here are some proposals for refactoring and optimizations:
+
+Split the calculateAndSort function into separate functions for each statistic calculation and the sorting. This will make the code easier to read, understand, and maintain.
+
+Calculate the mean by using a single loop and accumulator pattern instead of two loops. This will reduce the time complexity from O(n^2) to O(n).
+
+Use the qsort function from the standard library to sort the array instead of implementing a bubble sort algorithm. This will improve the performance and readability of the code.
+
+Calculate the median by finding the middle index of the sorted array instead of using two if-else conditions. This will simplify the code and make it more readable.
+
+Use an integer array to count the frequency of each element in the array instead of using a nested loop to count the occurrences of each element. This will reduce the time complexity from O(n^2) to O(n).
+
+Pass the array and its size as constant references to the functions to avoid unnecessary copying and modification of the original array.
+
+Here's an example of how the refactored code might look like:
+
+#include <stdio.h>
+#include <stdlib.h>
+#define ARRAY_SIZE 10
+
+// Function declarations
+void calculateMean(const int *arr, int size, float *mean);
+void calculateMedian(const int *arr, int size, float *median);
+void calculateMode(const int *arr, int size, int *mode);
+void sortArray(int *arr, int size);
+
+// Main function
+int main() {
+    int data[ARRAY_SIZE] = {7, 8, 9, 5, 6, 7, 8, 2, 3, 4};
+    float mean = 0.0f, median = 0.0f;
+    int mode = 0;
+
+    sortArray(data, ARRAY_SIZE);
+    calculateMean(data, ARRAY_SIZE, &mean);
+    calculateMedian(data, ARRAY_SIZE, &median);
+    calculateMode(data, ARRAY_SIZE, &mode);
+
+    printf("After processing:\n");
+    printf("Mean: %.2f\n", mean);
+    printf("Median: %.2f\n", median);
+    printf("Mode: %d\n", mode);
+    printf("Sorted Array: ");
+    for (int i = 0; i < ARRAY_SIZE; i++) {
+        printf("%d ", data[i]);
+    }
+    printf("\n");
+    return 0;
+}
+
+// Function to calculate the mean of an array
+void calculateMean(const int *arr, int size, float *mean) {
+    int sum = 0;
+    for (int i = 0; i < size; i++) {
+        sum += arr[i];
+    }
+    *mean = (float)sum / size;
+}
+
+// Function to calculate the median of an array
+void calculateMedian(const int *arr, int size, float *median) {
+    sortArray(arr, size);
+    if (size % 2 == 0) {
+        *median = (arr[size / 2 - 1] + arr[size / 2]) / 2.0;
+    } else {
+        *median = arr[size / 2];
+    }
+}
+
+// Function to calculate the mode of an array
+void calculateMode(const int *arr, int size, int *mode) {
+    int freq[10] = {0};
+    for (int i = 0; i < size; i++) {
+        freq[arr[i]]++;
+    }
+    int max_count = 0, max_index = 0;
+    for (int i = 0; i < 10; i++) {
+        if (freq[i] > max_count) {
+            max_count = freq[i];
+            max_index = i;
+        }
+    }
+    *mode = max_index;
+}
+
+// Function to sort an array using qsort
+void sortArray(int *arr, int size) {
+    qsort(arr, size, sizeof(int), compare);
+}
+
+// Comparator function for qsort
+int compare(const void *a, const void *b) {
+    return (*(int *)a - *(int *)b);
+}

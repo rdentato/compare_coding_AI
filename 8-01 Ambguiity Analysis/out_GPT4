@@ -1,0 +1,7 @@
+Overlaps and contradictions are as follows:
+
+Overlap between [REQ 1.1] and [REQ 3.1]: Both requirements pertain to user authentication but propose different approaches. [REQ 1.1] suggests a simple user/password protocol, whereas [REQ 3.1] suggests implementing multi-factor authentication (MFA).
+
+Contradiction between [REQ 1.3] and [REQ 2.2]: [REQ 1.3] requires the system to offer maximum customizability for user interfaces and operations, which contradicts [REQ 2.2]'s requirement for uniformity in user experience.
+
+Potential Conflict between [REQ 1.2] and [REQ 2.1]: Providing real-time data updates ([REQ 1.2]) may conflict with the system's requirement to perform comprehensive data analysis with at least 1 day of averages before presenting it to the user ([REQ 2.1]), depending on how "real-time" is implemented versus the delay implied by data analysis.

@@ -1,0 +1,93 @@
+Refactoring:
+The calculateAndSort function is too complex and violates the Single Responsibility Principle (SRP). It calculates the mean, median, mode, and sorts the array. This can be refactored into separate functions for each task.
+The sorting algorithm can be optimized using a more efficient sorting algorithm like Quicksort or Mergesort.
+The mode calculation can be optimized by using a frequency table to count the occurrences of each number.
+Optimizations:
+Use a more efficient sorting algorithm like Quicksort or Mergesort.
+Use a frequency table to calculate the mode.
+Calculate the mean and median in a single pass over the array.
+Here's the refactored code with optimizations:
+
+#include <stdio.h>
+#include <stdlib.h>
+#define ARRAY_SIZE 10
+
+// Function declarations
+void calculateMean(int *arr, int size, float *mean);
+void calculateMedian(int *arr, int size, float *median);
+void calculateMode(int *arr, int size, int *mode);
+void sortArray(int *arr, int size);
+
+// Main function
+int main() {
+    int data[ARRAY_SIZE] = {7, 8, 9, 5, 6, 7, 8, 2, 3, 4};
+    float mean = 0.0f, median = 0.0f;
+    int mode = 0;
+
+    calculateMean(data, ARRAY_SIZE, &mean);
+    calculateMedian(data, ARRAY_SIZE, &median);
+    calculateMode(data, ARRAY_SIZE, &mode);
+    sortArray(data, ARRAY_SIZE);
+
+    printf("After processing:\n");
+    printf("Mean: %.2f\n", mean);
+    printf("Median: %.2f\n", median);
+    printf("Mode: %d\n", mode);
+    printf("Sorted Array: ");
+    for (int i = 0; i < ARRAY_SIZE; i++) {
+        printf("%d ", data[i]);
+    }
+    printf("\n");
+    return 0;
+}
+
+// Function to calculate the mean
+void calculateMean(int *arr, int size, float *mean) {
+    int sum = 0;
+    for (int i = 0; i < size; i++) {
+        sum += arr[i];
+    }
+    *mean = (float)sum / size;
+}
+
+// Function to calculate the median
+void calculateMedian(int *arr, int size, float *median) {
+    sortArray(arr, size);
+    if (size % 2 == 0) {
+        *median = (arr[size / 2 - 1] + arr[size / 2]) / 2.0;
+    } else {
+        *median = arr[size / 2];
+    }
+}
+
+// Function to calculate the mode
+void calculateMode(int *arr, int size, int *mode) {
+    int freq[size];
+    for (int i = 0; i < size; i++) {
+        freq[i] = 0;
+    }
+
+    for (int i = 0; i < size; i++) {
+        freq[arr[i]]++;
+    }
+
+    int maxFreq = 0;
+    for (int i = 0; i < size; i++) {
+        if (freq[i] > maxFreq) {
+            maxFreq = freq[i];
+            *mode = i;
+        }
+    }
+}
+
+// Function to sort the array using Quicksort
+void sortArray(int *arr, int size) {
+    // Implement Quicksort or Mergesort here
+}
+In this refactored code, the calculateAndSort function is split into separate functions for calculating the mean, median, mode, and sorting the array. The sorting algorithm is replaced with a placeholder for a more efficient sorting algorithm like Quicksort or Mergesort. The mode calculation is optimized by using a frequency table to count the occurrences of each number.
+
+
+
+
+
+

@@ -1,0 +1,5 @@
+[REQ 1.1] and [REQ 1.2] overlap: Both requirements emphasize the importance of user access and data updates, but [REQ 1.1] focuses on user authentication while [REQ 1.2] emphasizes real-time updates.
+[REQ 1.2] and [REQ 2.1] contradict: [REQ 1.2] requires real-time updates, while [REQ 2.1] requires at least 1 day of averages before presenting data.
+[REQ 1.3] and [REQ 2.2] overlap: Both requirements emphasize customizability and uniformity, but [REQ 1.3] focuses on customizability of the interface while [REQ 2.2] emphasizes uniformity in experience.
+[REQ 2.1] and [REQ 2.2] overlap: Both requirements emphasize data analysis and uniformity, but [REQ 2.1] focuses on data analysis while [REQ 2.2] emphasizes uniformity in experience.
+[REQ 3.1] and [REQ 1.1] overlap: Both requirements emphasize user access and security, but [REQ 3.1] focuses on security protocols while [REQ 1.1] emphasizes user authentication.

@@ -1,0 +1,48 @@
+To achieve the requested functionality, you would need to perform a query that joins the relevant tables (COURSE, ENROLLMENT, LESSON, and CLASSROOM) to count the number of students enrolled in each course, and then check whether this count exceeds the Capacity of the classroom assigned to each lesson of the course. This assumes that each course's lessons are all held in the same classroom, a simplification for this example. If courses have lessons in multiple classrooms, additional logic would be needed to handle that complexity.
+
+Below is a Python function using sqlite3 to perform this operation. It connects to a SQLite database, executes the necessary SQL query, and returns a list of courses with student counts exceeding classroom capacities.
+
+import sqlite3
+
+def check_course_over_capacity(db_path):
+    # Connect to the SQLite database
+    conn = sqlite3.connect(db_path)
+    cur = conn.cursor()
+
+    # SQL query to find courses exceeding classroom capacity
+    query = """
+    SELECT c.CourseID, c.Subject, COUNT(e.StudentID) as EnrolledStudents, cr.Capacity
+    FROM COURSE c
+    JOIN ENROLLMENT e ON c.CourseID = e.CourseID
+    JOIN LESSON l ON c.CourseID = l.CourseID
+    JOIN CLASSROOM cr ON l.ClassroomID = cr.ClassroomID
+    GROUP BY c.CourseID, cr.ClassroomID
+    HAVING COUNT(e.StudentID) > cr.Capacity
+    """
+    
+    try:
+        cur.execute(query)
+        over_capacity_courses = cur.fetchall()
+        for course in over_capacity_courses:
+            print(f"CourseID: {course[0]}, Subject: {course[1]}, Enrolled Students: {course[2]}, Capacity: {course[3]}")
+    except sqlite3.Error as e:
+        print(f"An error occurred: {e}")
+    finally:
+        cur.close()
+        conn.close()
+    
+    return over_capacity_courses
+
+# Example usage
+db_path = "your_database_path_here.db"
+over_capacity_courses = check_course_over_capacity(db_path)
+This function:
+
+Connects to a SQLite database specified by db_path.
+Executes a SQL query that:
+Joins the COURSE, ENROLLMENT, LESSON, and CLASSROOM tables.
+Counts the number of students enrolled in each course.
+Filters to only include courses where the number of enrolled students is greater than the classroom capacity.
+Closes the database connection.
+Returns the list of courses exceeding capacity, each with the course ID, subject, number of enrolled students, and capacity.
+Replace "your_database_path_here.db" with the path to your SQLite database when calling the function.

@@ -1,0 +1,27 @@
+This C function performs a mixed transformation on a source string src, writing the result to a destination string dst using a transformation key key. The transformation applied to each character in the source string depends on the character's type (digit, uppercase letter, lowercase letter, or other). The function returns 0 upon successful transformation or -1 if the key is empty. The transformation rules are as follows:
+
+Digits ('0'-'9') are transformed into their complement to 9. For example, '0' becomes '9', '1' becomes '8', etc.
+Uppercase letters ('A'-'Z') are first subjected to a ROT13 transformation, then XORed with the current byte in the key. The ROT13 transformation shifts each letter by 13 places in the alphabet, wrapping around if necessary.
+Lowercase letters ('a'-'z') are directly XORed with the current byte in the key.
+Other characters are left unchanged.
+The key is used cyclically; if it is shorter than src, it starts over from the beginning once it reaches its end.
+The function assumes that dst has enough space to store the transformed string plus the null terminator. It ensures the resulting string is null-terminated.
+
+/**
+ * Performs a mixed encryption transformation on a string.
+ * 
+ * This function encrypts the input string `src` according to a set of rules,
+ * writing the encrypted version to `dst` using the encryption `key`.
+ * Digits are inverted (complement to 9), uppercase letters are ROT13 and XORed
+ * with the key, and lowercase letters are directly XORed with the key. Other
+ * characters are left unchanged. The transformation cycles through the key
+ * for each character of the input.
+ * 
+ * @param dst The buffer where the transformed string is written.
+ * @param src The input string to be transformed.
+ * @param key The key used for the XOR encryption part of the transformation.
+ * @return Returns 0 on successful transformation, -1 if the key is empty.
+ */
+int trans(char *dst, char *src, char *key) {
+    // Implementation remains the same.
+}

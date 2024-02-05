@@ -1,0 +1,12 @@
+The code has a minor bug in the loop that calculates the sum of numbers in the list. It should iterate until the length of the list, but it currently iterates until one less than the length due to len(numbers) - 1. This bug will cause the last element of the list to be skipped. Change the range to range(0, len(numbers)) to fix the issue. Here's the corrected code:
+
+# A program to calculate the average of numbers in a list
+numbers = [10, 20, 30, 40, 50]  # Example list of numbers
+total = 0  # Variable to store the sum of numbers
+# Loop to iterate over the list and sum the elements
+for i in range(0, len(numbers)):
+    total += numbers[i]
+# Calculate the average
+average = total / len(numbers)
+# Print the average
+print("Average:", average)

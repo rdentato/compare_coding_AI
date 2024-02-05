@@ -1,0 +1,23 @@
+Global Variable Usage (sales): Using a global variable (sales) instead of encapsulating it within a class or a more controlled scope creates potential issues with maintainability and testing.
+
+Magic Number (20 in sell_books): The hard-coded value 20 representing the price per book is a magic number, making the code less readable and maintainable. This should be replaced with a named constant.
+
+Duplicated Code (print("Invalid action")): The message "Invalid action" is repeated, which indicates duplicated logic that can be simplified or unified.
+
+Improper Exception Handling (in sell_books): Using a print statement for error handling (e.g., when a book is not available in sufficient quantity) instead of throwing exceptions or returning error codes reduces the ability to programmatically respond to errors.
+
+Lack of Input Validation: There's no validation for the inputs in process_user_action, such as checking if quantity is a positive number, which could lead to unexpected behaviors.
+
+Mixed Responsibilities: The function process_user_action is managing user input and calling other functions based on that input, which mixes the logic for user interaction with the business logic of managing books, leading to a violation of the Single Responsibility Principle.
+
+"God" Function (process_user_action): This function is doing too much by handling all different kinds of actions. It could be refactored into smaller, more focused functions for better maintainability.
+
+Inconsistent Parameter Handling: Process_user_action takes None as parameters for printing the inventory, which feels like a workaround rather than a clean interface design.
+
+Hardcoded Texts: Texts like "Enter action (add, sell, print, exit): " are hardcoded, making internationalization and localization difficult.
+
+Lack of Modularity: The code is not encapsulated in classes or modules, making reuse and testing more difficult.
+
+Improper Naming Convention: The function names (add_books, sell_books, etc.) are clear but the parameter naming (a, b, c in process_user_action) lacks descriptiveness, reducing readability.
+
+Manual Loop Control for Menu (while True with breaks): The main interaction loop is controlled manually with breaks, which is prone to error; structuring this into a function or using a more descriptive control variable could improve readability and maintainability.

@@ -1,0 +1,64 @@
+Book
+Attributes:
+title
+author
+ISBN
+publicationYear
+status
+Methods:
+addBook()
+removeBook()
+updateBook()
+Member
+Attributes:
+memberID
+name
+address
+phoneNumber
+Methods:
+register()
+updateInformation()
+unregister()
+BorrowingRecord
+Attributes:
+memberID
+bookID
+borrowDate
+returnDate
+Methods:
+borrowBook()
+renewBook()
+returnBook()
+Reservation
+Attributes:
+memberID
+bookID
+reservationDate
+Methods:
+reserveBook()
+cancelReservation()
+Search
+Methods:
+searchByTitle()
+searchByAuthor()
+searchByISBN()
+listAvailableBooks()
+listBorrowedBooks()
+Relationships
+
+Book 1-to-many Member: A book can be borrowed by multiple members, but a member can borrow only one book at a time.
+Member 1-to-many BorrowingRecord: A member can have multiple borrowing records, but each borrowing record is associated with only one member.
+Book 1-to-many BorrowingRecord: A book can have multiple borrowing records, but each borrowing record is associated with only one book.
+Member 1-to-many Reservation: A member can have multiple reservations, but each reservation is associated with only one member.
+Book 1-to-many Reservation: A book can have multiple reservations, but each reservation is associated with only one book.
+Search 1-to-many Book: The search functionality can search for multiple books, but each book is associated with only one search.
+Class Diagram
+
+classDiagram
+    Book "1" --> "*" Member : borrow
+    Member "1" --> "*" BorrowingRecord : borrow
+    Book "1" --> "*" BorrowingRecord : borrow
+    Member "1" --> "*" Reservation : reserve
+    Book "1" --> "*" Reservation : reserve
+    Search "1" --> "*" Book : search
+Please note that this is a simplified class diagram, and you may need to add more details or refine the relationships based on your specific requirements.

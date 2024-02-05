@@ -1,0 +1,32 @@
+Here is a possible implementation of the function using the sqlite module in Python:
+
+import sqlite3
+
+def check_course_capacity(db_path):
+    conn = sqlite3.connect(db_path)
+    cursor = conn.cursor()
+
+    # Get the list of courses and their corresponding classrooms
+    cursor.execute("SELECT CourseID, ClassroomID FROM ENROLLMENT")
+    courses_and_classrooms = cursor.fetchall()
+
+    # Get the list of classrooms and their capacities
+    cursor.execute("SELECT ClassroomID, Capacity FROM CLASSROOM")
+    classrooms_and_capacities = cursor.fetchall()
+
+    # Check that no course has more students than the capacity of its classroom
+    for course, classroom in courses_and_classrooms:
+        if classroom in classrooms_and_capacities:
+            capacity = classrooms_and_capacities[classroom]
+            cursor.execute("SELECT COUNT(*) FROM ENROLLMENT WHERE CourseID = ? AND ClassroomID = ?", (course, classroom))
+            num_students = cursor.fetchone()[0]
+            if num_students > capacity:
+                print(f"Course {course} has more students than the capacity of classroom {classroom}")
+                return False
+
+    return True
+This function first retrieves the list of courses and their corresponding classrooms using a query on the ENROLLMENT table. It then retrieves the list of classrooms and their capacities using a query on the CLASSROOM table.
+
+Next, the function iterates over the courses and classrooms, and checks that the number of students enrolled in each course does not exceed the capacity of the corresponding classroom. If any course violates this constraint, the function prints an error message and returns False. Otherwise, the function returns True.
+
+Note that this function assumes that the ENROLLMENT table contains a column called ClassroomID that specifies the classroom in which each course is held. If this column is not present, you will need to modify the query to retrieve the classroom ID for each course.

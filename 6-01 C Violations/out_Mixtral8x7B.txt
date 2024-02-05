@@ -1,0 +1,64 @@
+Here are the guideline violations I found in the code and some suggestions to fix them:
+
+[01] In the displayPoints function, i could be better named as index. Also, count could be named as number_of_points.
+
+[02] The indentation is consistent but using 4 spaces is more common and recommended.
+
+[03] In the displayPoints function, p and points could be declared in the same line.
+
+[04] There's no need for a blank line between variable declarations and the first line of a function. However, it's good practice to leave one blank line between functions.
+
+[06] The opening brace of the while loop in the displayPoints function should be in the same line.
+
+[07] The magic number 3.1415 should be defined as a constant.
+
+[08] The defined constant should be in uppercase.
+
+[09] There's no space between the operators in the printf statement of the displayPoints function.
+
+[11] The code is readable but it's good practice to simplify complex expressions.
+
+[12] The while loop in the displayPoints function should use braces.
+
+[15] In the displayPoints function, p->x and p->y should be used instead of p -> x and p -> y.
+
+[17] Some lines exceed 80 characters.
+
+[18] It's recommended to use the indent utility to check and correct the indentation.
+
+Here's the corrected code:
+
+#include <stdio.h>
+
+#define PI 3.1415
+struct Point {
+	int x, y;
+};
+
+int g = 10;
+
+void calculateArea()
+{
+	int r = 5;
+	float area = PI * r * r;
+	printf("Area: %f\n", area);
+}
+
+void displayPoints(struct Point *points, int count)
+{
+	int i = 0;
+	struct Point *p = points;
+	while (i < count) {
+		if (p->x > 10)
+			printf("Point %d: x = %d, y = %d\n", i++, p->x, p->y);
+		else
+			i++;
+	}
+}
+
+int main() {
+	struct Point points[] = {{12, 5}, {3, 4}, {15, 10}, {7, 8}};
+	displayPoints(points, 4);
+	calculateArea();
+	return 0;
+}

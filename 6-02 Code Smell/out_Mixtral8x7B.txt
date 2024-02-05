@@ -1,0 +1,10 @@
+Global variable sales in sell_books function.
+Magic number 20 in sell_books function representing the price per book.
+Lack of input validation in functions add_books, sell_books, and process_user_action.
+No type annotations for function arguments and return types.
+Long functions add_books, sell_books, and process_user_action can be broken down into smaller functions.
+Inconsistent spacing and indentation.
+No docstrings for functions to describe their purpose and usage.
+No error handling for potential KeyErrors when accessing inventory[book].
+process_user_action function has a lot of conditional checks that can be simplified.
+The while loop in the main program doesn't have a clear condition to exit.

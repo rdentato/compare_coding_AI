@@ -1,0 +1,53 @@
+User
+Considering the followin Entity Relationship Diagram in Mermaid format:
+```
+erDiagram
+    STUDENT {
+        string StudentID PK
+        string Name
+        int Age
+        string Email
+    }
+
+    ENROLLMENT {
+        string StudentID FK
+        string CourseID FK
+    }
+
+    COURSE {
+        string CourseID PK
+        string Subject
+    }
+
+    CLASSROOM {
+        string ClassroomID PK
+        string RoomNumber
+        string Building
+        int Capacity
+    }
+    
+    TEACHER {
+        string TeacherID PK
+        string Name
+        string Email
+        string Specialization
+    }
+    
+    LESSON {
+        string LessonID PK
+        string CourseID FK
+        string Weekday
+        time Time
+        int Duration
+        string ClassroomID FK
+        string TeacherID FK
+    }
+    
+    STUDENT ||--|{ ENROLLMENT : "is enrolled"
+    ENROLLMENT }|--|| COURSE  : "enrollment for"
+    TEACHER ||--|{ LESSON : "teaches"
+    CLASSROOM ||--|{ LESSON : "held in"
+    LESSON }|--|| COURSE  : "lesson for"
+```
+Write a python function using "sqlite" that checks that no course has a number of students that exceed classrooms capacity.
+

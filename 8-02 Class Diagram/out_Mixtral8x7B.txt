@@ -1,0 +1,45 @@
+Here's a simplified class diagram in Mermaid.js notation based on the given requirements:
+
+classDiagram
+class Library {
+  - books: Set[Book]
+  - members: Set[Member]
+  
+  + addBook(book: Book)
+  + removeBook(book: Book)
+  + updateBook(book: Book)
+  + registerMember(member: Member)
+  + unregisterMember(member: Member)
+  + searchBooks(criteria: SearchCriteria) : List[Book]
+}
+
+class Book {
+  - title: str
+  - author: str
+  - isbn: str
+  - publicationYear: int
+  - status: str
+ 
+  + Book(title: str, author: str, isbn: str, publicationYear: int, status: str)
+  + setStatus(status: str)
+}
+
+class Member {
+  - id: str
+  - name: str
+  - address: str
+  - phoneNumber: str
+  - borrowedBooks: Set[Book]
+  - reservedBooks: Set[Book]
+  
+  + Member(id: str, name: str, address: str, phoneNumber: str)
+  + borrowBook(book: Book)
+  + returnBook(book: Book)
+  + renewBook(book: Book)
+  + reserveBook(book: Book)
+}
+This class diagram includes classes Library, Book, and Member. Relevant attributes for each class include title, author, isbn, publicationYear, status in Book and id, name, address, phoneNumber, borrowedBooks, and reservedBooks in Member.
+
+Methods for each class include addBook, removeBook, updateBook, registerMember, unregisterMember, searchBooks in Library, and various borrowing and reservation methods in Member.
+
+Relationships between classes are primarily associations, with one-to-many relationships between Library and Book, and between Member and Book. The Library class has a set of Book objects, while the Member class has sets for borrowedBooks and reservedBooks. The multiplicity is shown using the notation Set[Book].

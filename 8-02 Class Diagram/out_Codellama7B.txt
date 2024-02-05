@@ -1,0 +1,50 @@
+Here is a class diagram for the simplified software system for a library based on the requirements provided:
+
+classDiagram
+    Book
+        +title: string
+        +author: string
+        +ISBN: string
+        +publicationYear: integer
+        +status: string
+        +addBook()
+        +removeBook()
+        +updateBook()
+    Member
+        +ID: integer
+        +name: string
+        +address: string
+        +phoneNumber: string
+        +register()
+        +updateInfo()
+        +unregister()
+    BorrowingRecord
+        +memberID: integer
+        +bookID: integer
+        +borrowDate: date
+        +returnDate: date
+        +renew()
+        +reserve()
+    Search
+        +searchByTitle()
+        +searchByAuthor()
+        +searchByISBN()
+        +listAvailableBooks()
+        +listBorrowedBooks()
+In this class diagram, we have the following classes:
+
+Book: This class represents a book in the library. It has attributes such as title, author, ISBN, publicationYear, and status. It also has methods such as addBook(), removeBook(), updateBook(), and searchByTitle().
+Member: This class represents a member of the library. It has attributes such as ID, name, address, and phoneNumber. It also has methods such as register(), updateInfo(), and unregister().
+BorrowingRecord: This class represents a borrowing record in the library. It has attributes such as memberID, bookID, borrowDate, and returnDate. It also has methods such as renew() and reserve().
+Search: This class represents the search functionality in the library. It has methods such as searchByTitle(), searchByAuthor(), searchByISBN(), and listAvailableBooks().
+The relationships between these classes are as follows:
+
+Book and Member are associated with each other through the BorrowingRecord class. A BorrowingRecord has a memberID and a bookID, which represent the member and book that are associated with the record.
+Book and Search are associated with each other through the Search class. A Search has a bookID, which represents the book that is being searched for.
+Member and Search are associated with each other through the Search class. A Search has a memberID, which represents the member that is searching for a book.
+The multiplicity of the relationships are as follows:
+
+Book and Member have a one-to-many relationship, since a book can be borrowed by multiple members, and a member can borrow multiple books.
+BorrowingRecord has a one-to-one relationship with Book and Member, since each borrowing record is associated with a specific book and member.
+Search has a one-to-many relationship with Book and Member, since a search can be performed for multiple books and members.
+Note that this is a simplified class diagram, and there may be additional classes or relationships that are not included here.

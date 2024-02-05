@@ -1,0 +1,52 @@
+classDiagram
+    class Book {
+        -String title
+        -String author
+        -String ISBN
+        -int publicationYear
+        -String status
+        +addBook()
+        +removeBook()
+        +updateBook()
+    }
+    
+    class Member {
+        -String uniqueID
+        -String name
+        -String address
+        -String phoneNumber
+        +register()
+        +updateInformation()
+        +unregister()
+    }
+    
+    class BorrowingRecord {
+        -Date borrowDate
+        -Date returnDate
+        +borrowBook()
+        +returnBook()
+        +renewBook()
+    }
+    
+    class LibrarySystem {
+        +searchBookByTitle()
+        +searchBookByAuthor()
+        +searchBookByISBN()
+        +listAvailableBooks()
+        +listBorrowedBooks()
+    }
+    
+    Member "1" -- "0..*" Book : borrows >
+    Book "1" -- "0..*" BorrowingRecord : has >
+    Member "1" -- "0..*" BorrowingRecord : creates >
+    LibrarySystem "1" -- "*" Book : manages >
+    LibrarySystem "1" -- "*" Member : manages >
+This diagram includes:
+
+Classes identified are Book, Member, BorrowingRecord, and LibrarySystem.
+Attributes are defined based on the details given in the requirements.
+Methods are specified that reflect the operations such as adding, removing, updating books and members; registering, borrowing, returning, renewing books; and searching functionality within the LibrarySystem.
+Relationships:
+A Member can borrow multiple Books (0 to many), and a Book can be borrowed by a Member.
+A Book can have multiple BorrowingRecords, each representing a different borrowing event, and each BorrowingRecord is associated with a Member.
+The LibrarySystem manages both Book and Member entities, indicating a one-to-many relationship with both classes.

@@ -1,0 +1,12 @@
+The bug is that the variable index is never incremented within the loop, causing all elements to be placed in the first bucket (bucket 0), because bucket is always computed as 0 % numBuckets.
+
+To fix the bug, increment index within the loop:
+
+for (T element : elements)
+{
+    int bucket = index % numBuckets;
+    buckets.computeIfAbsent(bucket,
+                            key -> new ArrayList<>(initialCapacity))
+           .add(element);
+    index++; // Increment index here
+}

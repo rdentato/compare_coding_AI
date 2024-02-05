@@ -1,0 +1,39 @@
+The decrypt function would be similar to the encrypt function, but with the XOR and inversion operations undone. Here's an example implementation:
+
+
+
+/**
+ * Performs a mixed decryption transformation on a string.
+ *
+ * This function decrypts the input string `src` according to a set of rules,
+ * writing the decrypted version to `dst` using the decryption `key`.
+ * Digits are inverted (complement to 9), uppercase letters are ROT13 and XORed
+ * with the key, and lowercase letters are directly XORed with the key. Other
+ * characters are left unchanged. The transformation cycles through the key
+ * for each character of the input.
+ *
+ * @param dst The buffer where the transformed string is written.
+ * @param src The input string to be transformed.
+ * @param key The key used for the XOR decryption part of the transformation.
+ * @return Returns 0 on successful transformation, -1 if the key is empty.
+ */
+int decrypt(char *dst, char *src, char *key) {
+    int key_len = strlen(key);
+    if (key_len == 0)  return -1;
+    int key_index = 0;
+    for (int i = 0; src[i] != '\0'; ++i) {
+        if (src[i] >= '0' && src[i] <= '9') {
+            dst[i] = '9' - (src[i] - '0');
+        } else if (src[i] >= 'A' && src[i] <= 'Z') {
+            dst[i] = rot13(src[i]) ^ key[key_index];
+        } else if (src[i] >= 'a' && src[i] <= 'z') {
+            dst[i] = src[i] ^ key[key_index];
+        } else {
+            dst[i] = src[i];
+        }
+        key_index = (key_index + 1) % key_len;
+    }
+    dst[strlen(src)] = '\0';
+    return 0;
+}
+Note that the only differences between the encrypt and decrypt functions are the comments and the names of the functions and their parameters. This is because the XOR and inversion operations are their own inverses, so they can simply be undone by repeating the same operation.

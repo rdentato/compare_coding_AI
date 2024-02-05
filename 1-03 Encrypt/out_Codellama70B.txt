@@ -1,0 +1,31 @@
+The decrypt function should have the same parameters as the encrypt function.
+The decrypt function should also check if the key is empty and return -1 if it is.
+The decrypt function should use a key_index variable to cycle through the key for each character of the input.
+The decrypt function should invert the encryption process for each character of the input:
+For digits, invert the complement to 9 operation.
+For uppercase letters, apply the inverse of the ROT13 operation and XOR with the key.
+For lowercase letters, XOR with the key.
+For other characters, leave them unchanged.
+The decrypt function should write the decrypted version to dst and return 0 on successful decryption.
+Here is the corresponding int decrypt(char *dst, char *src, char *key) function:
+
+int decrypt(char *dst, char *src, char *key) {
+    int key_len = strlen(key);
+    if (key_len == 0)  return -1;
+    int key_index = 0;
+    for (int i = 0; src[i] != '\0'; ++i) {
+        if (src[i] >= '0' && src[i] <= '9') {
+            dst[i] = '9' - (src[i] - '0');
+        } else if (src[i] >= 'A' && src[i] <= 'Z') {
+            dst[i] = rot13(src[i]) ^ key[key_index];
+        } else if (src[i] >= 'a' && src[i] <= 'z') {
+            dst[i] = src[i] ^ key[key_index];
+        } else {
+            dst[i] = src[i];
+        }
+        key_index = (key_index + 1) % key_len;
+    }
+    dst[strlen(src)] = '\0';
+    return 0;
+}
+This decrypt function reverses the encryption process performed by the encrypt function, allowing you to decrypt the encrypted string back to its original form.

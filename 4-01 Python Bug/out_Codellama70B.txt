@@ -1,0 +1,5 @@
+The code has a minor bug in the loop that calculates the sum of numbers. It should iterate until len(numbers) instead of len(numbers) - 1. This bug will exclude the last element in the list from the sum calculation. The corrected loop is as follows:
+
+for i in range(0, len(numbers)):
+    total += numbers[i]
+The rest of the code calculates and prints the average correctly.

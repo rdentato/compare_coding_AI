@@ -1,0 +1,27 @@
+Use Constructor Overloading in Employee Class: Instead of setting each property individually, create a constructor in the Employee class that initializes all the fields. This makes object creation concise and ensures an Employee object is always in a consistent state.
+public Employee(String name, String id, String email, int age, String department) {
+    this.name = name;
+    this.id = id;
+    this.email = email;
+    this.age = age;
+    this.department = department;
+}
+Encapsulation: The employees list should be private to prevent external modification without validation. Provide a method to add an employee rather than allowing direct access to the list.
+private ArrayList<Employee> employees = new ArrayList<>();
+Use Interface for Type Reference: Instead of using ArrayList for the type reference, use List. This makes the code more flexible as it can work with any List implementation.
+private List<Employee> employees = new ArrayList<>();
+Looping Efficiency: For printAllEmployees(), consider using StringBuilder for concatenation inside loops, as it's more efficient than using +.
+
+Method for Employee Creation: After adding a constructor in the Employee class, modify the addEmployee method to use the constructor, making the object creation process cleaner.
+
+public void addEmployee(String name, String id, String email, int age, String department) {
+    Employee newEmployee = new Employee(name, id, email, age, department);
+    employees.add(newEmployee);
+}
+Avoid Returning Null: In the findEmployeeById method, returning null can potentially lead to NullPointerException. Consider optional or specific handling for not found cases.
+
+Use Stream API for calculateAverageAge: Java 8 Stream API provides a more readable and concise way to calculate averages.
+
+
+
+public double calculateAverageAge()

@@ -1,0 +1,66 @@
+The provided code has several style guideline violations:
+
+Global Variable int g = 10; violates [14] Avoid global variables where unnecessary.
+
+Magic Number in calculateArea float area=3.1415*r*r; violates [07] Define values as constants.
+
+Use of CamelCase in Function Name void calculateArea() violates [01] Meaningful names... use underscores.
+
+Space with -> Operator if(p -> x > 10) violates [16] Do not surround the -> operator with spaces.
+
+Opening Brace Position in void calculateArea() and void displayPoints(struct Point *points, int count){ violates [06] Opening brace must be on the same line.
+
+Line Length The line printf("Point %d: x = %d, y = %d\n",i++,p -> x,p -> y); may exceed 80 characters, violating [17] Avoid source lines exceeding 80 characters.
+
+Use of #define for Constants The number 3.1415 should be defined as a constant, also following [08] #defined constants must be in uppercase.
+
+Missing Braces Around Control-flow Statements The while loop in displayPoints violates [12] Use braces; avoid loops and conditionals without them.
+
+Indentation While not explicitly incorrect without a clear specification, ensuring good indentation adherence is mentioned. This code should be checked for consistent indentation per [02] Good indentation (3 or 4 spaces).
+
+Single Statement in Loop Without Braces The while loop in displayPoints does not use braces for its body, violating [12].
+
+Suggested fixes:
+
+[01], [03]: Rename calculateArea to calculate_area.
+[07], [08]: Use a #define for 3.1415, e.g., #define PI 3.1415.
+[14]: Evaluate if int g = 10; is necessary; if not, remove it.
+[16]: Use if (p->x > 10) instead of if (p -> x > 10).
+[06]: Place the opening brace on the same line as the function definition.
+[12]: Add braces around the loop body in displayPoints.
+[17]: Consider breaking the printf statement into multiple lines or storing intermediate results in variables to reduce line length.
+[02]: Ensure indentations are consistent with the chosen guidelines (3 or 4 spaces).
+Revised code snippet with the major issues addressed:
+
+#include <stdio.h>
+
+#define PI 3.14159
+
+struct Point {
+    int x, y;
+};
+
+void calculate_area() {
+    int r = 5;
+    float area = PI * r * r;
+    printf("Area: %f\n", area);
+}
+
+void display_points(struct Point *points, int count) {
+    int i = 0;
+    struct Point *p = points;
+    while (i < count) {
+        if (p->x > 10) {
+            printf("Point %d: x = %d, y = %d\n", i++, p->x, p->y);
+        } else {
+            i++;
+        }
+    }
+}
+
+int main() {
+    struct Point points[] = {{12, 5}, {3, 4}, {15, 10}, {7, 8}};
+    display_points(points, 4);
+    calculate_area();
+    return 0;
+}

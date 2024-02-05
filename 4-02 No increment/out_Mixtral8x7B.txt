@@ -1,0 +1,12 @@
+The issue lies in the fact that the Map<Integer, List<T>> buckets is a HashMap, which does not maintain the order of elements. Therefore, even though you are distributing the elements in numBuckets using modulo operation, the iteration order of the HashMap is not guaranteed to be consistent, leading to inconsistent partitioning.
+
+To fix this, change the HashMap to a LinkedHashMap or any other data structure that maintains the order of elements, like an ArrayList of Lists:
+
+List<List<T>> buckets = new ArrayList<>(numBuckets);
+for (int i = 0; i < numBuckets; i++) {
+    buckets.add(new ArrayList<>());
+}
+// ...
+int bucket = index % numBuckets;
+buckets.get(bucket).add(element);
+With this change, the elements will be consistently partitioned across the specified number of buckets.

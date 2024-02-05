@@ -1,0 +1,18 @@
+Magic number: The price per book (20) is hardcoded in the sell_books function. This makes it difficult to change the price in the future.
+Global variable: The sales variable is a global variable, which can lead to unexpected behavior if it's modified in other parts of the code.
+Lack of error handling: There is no error handling for invalid input or exceptions.
+Duplicate code: The print_inventory function and the process_user_action function both print the inventory.
+Unnecessary complexity: The process_user_action function is overly complex and could be simplified.
+Lack of validation: There is no validation for the book name or quantity input.
+Inconsistent naming: The function names are not consistent (e.g., add_books vs sell_books).
+Lack of documentation: There is no documentation for the functions, which makes it difficult to understand their purpose and usage.
+Unnecessary use of global variables: The process_user_action function could be simplified by removing the use of global variables.
+Lack of separation of concerns: The process_user_action function is responsible for multiple tasks (e.g., processing user actions and printing inventory).
+Lack of error handling: There is no error handling for invalid input or exceptions.
+Duplicate code: The print_inventory function and the process_user_action function both print the inventory.
+Unnecessary complexity: The process_user_action function is overly complex and could be simplified.
+Lack of validation: There is no validation for the book name or quantity input.
+Inconsistent naming: The function names are not consistent (e.g., add_books vs sell_books).
+Lack of documentation: There is no documentation for the functions, which makes it difficult to understand their purpose and usage.
+Unnecessary use of global variables: The process_user_action function could be simplified by removing the use of global variables.
+Lack of separation of concerns: The process_user_action function is responsible for multiple tasks (e.g., processing user actions and printing inventory).

@@ -1,0 +1,22 @@
+The check_lessons function takes a database connection object as input.
+It creates a cursor object to execute SQL queries.
+The query variable contains a SQL query that performs a self-join on the lessons table to find overlapping lessons in the same classroom on the same day.
+The query selects the lesson_id, classroom_id, weekday, start_time_l1, duration_l1, start_time_l2, and duration_l2 columns from the lessons table.
+The query uses a WHERE clause to filter out lessons with different lesson_id values, same classroom_id values, and same weekday values.
+The query also checks for overlapping lessons using the time and duration columns.
+The query uses a subquery to check if the start time of one lesson is within the duration of another lesson, or if the start time of the other lesson is within the duration of the first lesson.
+The cursor.execute(query) statement executes the SQL query.
+The verified variable stores the results of the query execution using cursor.fetchall().
+The function returns the verified variable, which contains the overlapping lessons.
+The pydoc comment for the check_lessons function should provide a brief description of the function, its parameters, and its return value. Here's an example:
+
+"""
+Checks for overlapping lessons in the same classroom on the same day.
+
+Parameters:
+    db_connection (sqlite3.Connection): A database connection object.
+
+Returns:
+    list: A list of tuples containing the overlapping lessons' information.
+"""
+This pydoc comment provides a brief description of the function, explains the db_connection parameter, and indicates that the function returns a list of tuples containing the overlapping lessons' information.

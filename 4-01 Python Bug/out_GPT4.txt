@@ -1,0 +1,11 @@
+The bug in the code is within the loop where it iterates over the list of numbers:
+
+for i in range(0, len(numbers) - 1):
+This will cause the loop to miss the last element of the list, thus not including it in the sum for the average calculation. The correct iteration should include all elements:
+
+for i in range(0, len(numbers)):
+Or more Pythonically:
+
+for number in numbers:
+    total += number
+This ensures all elements in the list are summed up before calculating the average.

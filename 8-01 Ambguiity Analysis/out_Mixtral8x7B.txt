@@ -1,0 +1,5 @@
+[REQ 1.1] Easy User Access and [REQ 3.1] Security Protocols overlap, as a simple user/password protocol (per [REQ 1.1]) may not provide the highest level of security (mentioned in [REQ 3.1]).
+
+[REQ 1.3] Customizability and [REQ 2.2] Uniformity in Experience contradict each other, as customizability allows users to modify all aspects of the interface and system operation (per [REQ 1.3]), while uniformity requires all users to have the same interface and operational procedures (per [REQ 2.2]).
+
+[REQ 1.2] Real-time Updates and [REQ 2.1] Data Analysis contradict each other, as real-time updates (per [REQ 1.2]) may not allow for comprehensive data analysis (including at least 1 day of averages as per [REQ 2.1]) before presenting data to the user.

@@ -1,0 +1,26 @@
+Import the sqlite3 module, which is used to interact with SQLite databases.
+Define a function check_classroom_capacity that takes a parameter db_path, which is the path to the SQLite database file.
+Create a connection to the database using sqlite3.connect(db_path).
+Create a cursor object using db.cursor().
+Execute a SQL query that:
+Selects the CourseID, Subject, ClassroomID, RoomNumber, Building, Capacity, and StudentCount (calculated as the count of StudentIDs) from the COURSE, ENROLLMENT, LESSON, and CLASSROOM tables.
+Joins the COURSE table with the ENROLLMENT table on CourseID.
+Joins the LESSON table with the COURSE table on CourseID.
+Joins the CLASSROOM table with the LESSON table on ClassroomID.
+Groups the results by CourseID and ClassroomID.
+Filters the results to only include those where the StudentCount is greater than the Capacity of the classroom.
+Fetch all the results from the query using cursor.fetchall().
+Close the database connection using db.close().
+Return the results from the function.
+Pydoc comment:
+
+"""
+Checks the classroom capacity for each course and returns those that are over capacity.
+
+Args:
+    db_path (str): The path to the SQLite database file.
+
+Returns:
+    list: A list of tuples containing the course information and student count for each course that is over capacity.
+"""
+This pydoc comment provides a brief description of the function's purpose, specifies the parameter db_path and its type, and indicates the return type, which is a list of tuples containing course information and student count.

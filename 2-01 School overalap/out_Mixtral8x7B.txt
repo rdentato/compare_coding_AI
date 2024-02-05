@@ -1,0 +1,32 @@
+This code defines a function check_lessons() that takes a SQLite database connection as an argument and returns a list of lesson conflicts in the database. A lesson conflict occurs when two lessons are scheduled in the same classroom at the same time or when they overlap each other.
+
+The function performs a self-join on the lessons table to compare every lesson with every other lesson. It uses the following conditions to find conflicts:
+
+The lesson_id of the two lessons should be different, indicating that they are different lessons.
+The classroom_id of the two lessons should be the same, indicating that they are scheduled in the same classroom.
+The weekday of the two lessons should be the same, indicating that they are scheduled on the same day.
+The lessons should either overlap each other or one lesson should be scheduled immediately before or after the other.
+The function then returns the list of conflicts found in the database.
+
+Here is the pydoc comment to be added to the function:
+
+def check_lessons(db_connection):
+    """
+    Checks for lesson conflicts in the database.
+
+    A lesson conflict occurs when two lessons are scheduled in the same
+    classroom at the same time or when they overlap each other.
+
+    Args:
+        db_connection (sqlite3.Connection): A SQLite database connection.
+
+    Returns:
+        A list of lesson conflicts found in the database. Each conflict
+        is represented as a tuple of the following format:
+            (l1.lesson_id, l2.lesson_id, l1.classroom_id, l1.weekday,
+             l1.time as start_time_l1, l1.duration as duration_l1,
+             l2.time as start_time_l2, l2.duration as duration_l2)
+    """
+    # Function implementation goes here.
+
+

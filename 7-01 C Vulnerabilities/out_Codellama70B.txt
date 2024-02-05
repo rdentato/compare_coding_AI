@@ -1,0 +1,8 @@
+Buffer Overflow: The user_input buffer is 100 bytes, but the command buffer is only 150 bytes. If the user enters more than 50 characters, it will overflow into the command buffer, potentially allowing them to execute arbitrary commands.
+Command Injection: The command buffer is built by concatenating user-controlled input with the echo command. This allows an attacker to inject additional commands, such as piping the output to a file or executing a malicious program.
+Insecure Input Handling: The secret_key is read using gets, which does not perform any bounds checking. This allows an attacker to overflow the buffer and potentially execute arbitrary code.
+Insecure Storage: The secret_key is stored in plaintext in memory. This makes it vulnerable to memory dump attacks, where an attacker can read the contents of memory to retrieve the key.
+Insecure Comparison: The comparison of the secret_key with "qwerty" is performed using strcmp. This allows an attacker to bypass the check by using a timing attack, where they measure the time it takes to perform the comparison and use that to determine the correct key.
+Insecure Function: The retriveDepositAmount function is not defined in the code, but it is likely to be a sensitive function that retrieves sensitive information. By controlling the user_input parameter, an attacker may be able to manipulate the function to retrieve sensitive information.
+Insecure Output: The secret_key and retriveDepositAmount results are printed to the console, which may allow an attacker to retrieve sensitive information.
+Please note that this is not an exhaustive list, and there may be other potential security issues in the code.

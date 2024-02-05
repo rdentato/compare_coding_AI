@@ -1,0 +1,17 @@
+SQL Injection (OWASP A03:2021-Injection): The code directly concatenates user input into the SQL query, making it vulnerable to SQL injection attacks.
+
+Hardcoded Sensitive Information (OWASP A03:2021-Sensitive Data Exposure): Uses hardcoded database credentials ("root", "password"), exposing sensitive information within the source code.
+
+Use of Default Credentials (OWASP A05:2021-Security Misconfiguration): Connection to the database uses default/administrative credentials, posing a risk of unauthorized access.
+
+Insecure Deserialization (OWASP A08:2021-Insecure Deserialization): Deserializes data from object.bin without validating or sanitizing it, potentially leading to remote code execution if the file contains malicious code.
+
+Path Traversal (OWASP A05:2021-Security Misconfiguration): Constructs the file path from user input without validation ("/var/app/files/" + fileName), risking unauthorized access to files (path traversal).
+
+Sensitive Data Exposure (OWASP A03:2021-Sensitive Data Exposure): Prints sensitive information (username and password) directly to the console, which could be logged or observed by unauthorized persons.
+
+Lack of Error Handling (not directly cited in OWASP but relevant for good security practices): Catches and prints exceptions broadly without specific handling, potentially leaking sensitive information about the application's internal workings.
+
+Use of Unencrypted Database Connections (OWASP A02:2021-Cryptographic Failures): Establishes a database connection without specifying the use of SSL/TLS, risking exposure of sensitive data through man-in-the-middle attacks.
+
+Fixing these issues involves parameterized SQL queries, removing hardcoded credentials, validating and sanitizing user input, properly handling errors, and securing data in transit and at rest.

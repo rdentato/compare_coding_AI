@@ -1,0 +1,18 @@
+This code is a Python function named check_lessons that takes a db_connection parameter of type sqlite3.Connection. The function uses a SQL query to retrieve data from the lessons table in the database.
+
+The query is a complex one that checks for overlapping lessons in the same classroom on the same day. It uses the lessons table twice, with the alias l1 and l2, to compare the start and end times of each lesson. The query first checks that the lesson IDs are different, then that the classroom IDs are the same, and then that the weekday is the same. Finally, it checks that the start times of the two lessons do not overlap, or that the end times of the two lessons do not overlap.
+
+The function then executes the query using the cursor.execute() method and retrieves the results using the cursor.fetchall() method. The results are returned as a list of tuples, where each tuple contains the lesson IDs, classroom ID, weekday, start time, duration, and end time of each overlapping lesson.
+
+The pydoc comment for this function could be:
+
+
+
+def check_lessons(db_connection):
+    """
+    Check for overlapping lessons in the same classroom on the same day.
+
+    :param db_connection: A sqlite3.Connection object.
+    :return: A list of tuples, where each tuple contains the lesson IDs, classroom ID, weekday, start time, duration, and end time of each overlapping lesson.
+    """
+    

@@ -1,0 +1,14 @@
+The code is correct and does not have any bugs. However, there is a small issue with the calculation of the average. The line total += numbers[i] should be total += numbers[i+1]. This is because the loop iterates over the list of numbers, but the index i is used to access the current number in the list. Therefore, the index i+1 should be used to access the next number in the list.
+
+Here is the corrected code:
+
+# A program to calculate the average of numbers in a list
+numbers = [10, 20, 30, 40, 50]  # Example list of numbers
+total = 0  # Variable to store the sum of numbers
+# Loop to iterate over the list and sum the elements
+for i in range(0, len(numbers) - 1):
+    total += numbers[i+1]
+# Calculate the average
+average = total / len(numbers)
+# Print the average
+print("Average:", average)

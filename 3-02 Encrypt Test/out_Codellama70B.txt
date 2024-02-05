@@ -1,0 +1,18 @@
+
+The function should return -1 if the key is empty.
+The function should encrypt the input string using the key and write the result to the output buffer.
+The function should perform a rot13 transformation on the input string using the key.
+The function should perform a XOR transformation on the input string using the key.
+The function should invert the digits in the input string using the key.
+The function should invert the letters in the input string using the key.
+The function should invert the special characters in the input string using the key.
+These tests cover the following scenarios:
+
+Empty key: The function should return -1 if the key is empty.
+Simple string: The function should encrypt the input string using the key and write the result to the output buffer.
+Rot13: The function should perform a rot13 transformation on the input string using the key.
+Xor: The function should perform a XOR transformation on the input string using the key.
+Invert digits: The function should invert the digits in the input string using the key.
+Invert letters: The function should invert the letters in the input string using the key.
+Invert special chars: The function should invert the special characters in the input string using the key.
+Note that these tests are just a starting point, and you may need to add more tests to cover all the possible scenarios and edge cases.

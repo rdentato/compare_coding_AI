@@ -1,0 +1,15 @@
+The security issues in the code are:
+
+Hardcoded database credentials (OWASP A3:2017 - Sensitive Data Exposure). The database connection string contains the username "root" and password "password". These credentials should be stored securely and not hardcoded into the application.
+
+SQL Injection (OWASP A1:2017 - Injection). The code constructs SQL queries by concatenating user input directly into the query string. This practice allows for SQL injection attacks, where an attacker can inject malicious SQL code into the query. To prevent SQL injection, use prepared statements with parameterized queries instead of concatenating user input directly into the query string.
+
+Information Exposure (OWASP A3:2017 - Sensitive Data Exposure). The code prints the user's username and password to the console (System.out.println("User Login: " + user + " Password: " + pass);). This practice exposes sensitive user data and should be avoided.
+
+Insecure Deserialization (OWASP A8:2017 - Security Misconfiguration). The code reads an object from a file using ObjectInputStream (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("object.bin"));). Deserialization of untrusted data can lead to remote code execution attacks. To prevent insecure deserialization, validate and filter user input, and consider using a secure serialization format.
+
+Lack of Error Handling. The code catches exceptions but only prints a stack trace. This practice can expose sensitive information and make it difficult to troubleshoot issues. Instead, provide meaningful error messages and log errors appropriately.
+
+File Path Traversal (OWASP A1:2017 - Injection). The code constructs a file path using user input (FileInputStream fis = new FileInputStream("/var/app/files/" + fileName);). This practice allows for file path traversal attacks, where an attacker can access files outside of the intended directory. To prevent file path traversal, validate user input and use a safe API for file access.
+
+Use of a deprecated method. The FileInputStream constructor that takes a string argument is deprecated since Java 9. It is recommended to use Files.newInputStream(Paths.get(filePath), StandardOpenOption.READ) instead.

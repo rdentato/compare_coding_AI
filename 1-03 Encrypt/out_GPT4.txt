@@ -1,0 +1,32 @@
+To decrypt, we have to reverse the encryption operations. For digits and unchanged characters, this operation is straightforward. For uppercase and lowercase letters, we reverse the XOR operation using the same key, considering that the operation is its own inverse. For uppercase letters, we also have to apply ROT13 again after XORing, as ROT13 is its own inverse.
+
+
+
+int decrypt(char *dst, char *src, char *key) {
+    int key_len = strlen(key);
+    if (key_len == 0) return -1;
+    int key_index = 0;
+    for (int i = 0; src[i] != '\0'; ++i) {
+        if (src[i] >= '0' && src[i] <= '9') {
+            // Digit inversion is the same forward and backward.
+            dst[i] = '9' - (src[i] - '0');
+        } else if (src[i] >= 'A' && src[i] <= 'Z' || src[i] >= 'a' && src[i] <= 'z') {
+            // For letters, XOR to reverse previous XOR, if uppercase apply ROT13 after XOR to decrypt.
+            char tmp = src[i] ^ key[key_index];
+            if (src[i] >= 'A' && src[i] <= 'Z') {
+                // Apply ROT13 on the result of XOR if uppercase.
+                dst[i] = rot13(tmp);
+            } else {
+                // Lowercase letters are directly the result of XOR.
+                dst[i] = tmp;
+            }
+        } else {
+            // Other characters are unchanged.
+            dst[i] = src[i];
+        }
+        key_index = (key_index + 1) % key_len;
+    }
+    dst[strlen(src)] = '\0';
+    return 0;
+}
+Note: A predefined rot13 function is assumed, similar to the encryption process. It performs a ROT13 on a single character and is used for both encryption and decryption of uppercase letters.

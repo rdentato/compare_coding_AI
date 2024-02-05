@@ -1,0 +1,53 @@
+Refactoring and Optimizations
+Split Functionality: Separate the logic for calculating mean, median, mode, and sorting into distinct functions. This improves readability and modularity.
+
+Use More Efficient Sorting: Replace the bubble sort with a more efficient sorting algorithm like quicksort or mergesort for better performance.
+
+Optimize Mode Calculation: Use a hash map (in C, you might use a struct or a separate array) to track frequencies, reducing the need to iterate through the array multiple times.
+
+Avoid Recalculation: Calculate the mean in the same loop used for finding the mode to save computational resources.
+
+Minimize Scope of Variables: Declare variables as close as possible to their point of use to improve readability and maintainability.
+
+Use size_t for Size: For array sizes and indices, it's more appropriate to use size_t instead of int to avoid potential issues with negative sizes and to accommodate larger arrays.
+
+Updated Code Snippet (Partial for Exemplification)
+Note: Full implementation of suggestions like a hash map for mode calculation is not shown due to complexity and environment constraints.
+
+#include <stdio.h>
+#include <stdlib.h>
+
+#define ARRAY_SIZE 10
+
+void calculateMean(const int *arr, int size, float *mean);
+void calculateMedian(int *arr, int size, float *median);
+void calculateMode(int *arr, int size, int *mode);
+void quickSort(int *arr, int low, int high); // Assuming implementation is provided
+
+int main() {
+    int data[ARRAY_SIZE] = {7, 8, 9, 5, 6, 7, 8, 2, 3, 4};
+    float mean = 0.0f, median = 0.0f;
+    int mode = 0;
+    
+    calculateMean(data, ARRAY_SIZE, &mean);
+    quickSort(data, 0, ARRAY_SIZE - 1); // Sort before calculating median and mode
+    calculateMedian(data, ARRAY_SIZE, &median);
+    calculateMode(data, ARRAY_SIZE, &mode);
+    
+    // Output results...
+}
+
+void calculateMean(const int *arr, int size, float *mean) {
+    int sum = 0;
+    for (int i = 0; i < size; i++) sum += arr[i];
+    *mean = (float)sum / size;
+}
+
+void calculateMedian(int *arr, int size, float *median) {
+    if (size % 2 == 0) *median = (arr[size / 2 - 1] + arr[size / 2]) / 2.0;
+    else *median = arr[size / 2];
+}
+
+// Assuming we provide a quickSort function...
+// calculateMode function would also ideally be optimized further.
+This refactor breaks down the complex function into manageable parts, each responsible for a single task, and suggests more efficient algorithms and practices to improve performance and maintainability. The mode calculation optimization, in particular, could significantly enhance performance for large datasets but requires additional data structures not standard in C without external libraries.

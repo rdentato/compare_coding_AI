@@ -1,0 +1,1 @@
+Write a C function "int countFEN(int *pieces, char *fen)" that given a chess board status described as a FEN string, fills an array of integer with the number of how many pieces are left to each side. The array will contain White pieces before Black pieces and pieces are orderd as: King, Queen, Rook, Bishop, Knight, Pawn.

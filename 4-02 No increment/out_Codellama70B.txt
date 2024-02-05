@@ -1,0 +1,3 @@
+The bug is in the for loop. The index variable is not incremented, so all elements are added to the same bucket.
+
+To fix the bug, you need to increment the index variable after adding each element to the bucket.

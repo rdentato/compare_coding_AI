@@ -1,0 +1,26 @@
+Here are some suggestions to fix the violations of the style guidelines in the provided code:
+
+[01] Use meaningful names for variables. For example, use PI instead of 3.1415.
+
+Replace:
+
+float area=3.1415*r*r;
+With:
+
+float area = PI * r * r;
+And add the definition of PI as a constant:
+
+Replace:
+
+#include <stdio.h>
+With:
+
+#include <stdio.h>
+#define PI 3.1415
+[02] Use good indentation. For example, the while loop in the displayPoints function should be indented more.
+
+Replace:
+
+while(i<count) if(p -> x > 10) printf("Point %d: x = %d, y = %d\n",i++,p -> x,p -> y); else i++;
+
+
